@@ -5,6 +5,7 @@ import den.project.catalog.repository.ProductsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
@@ -16,10 +17,10 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
-//@RestController///можно без этой аннотации
+@RestController///можно без этой аннотации
 @XmlAccessorType(XmlAccessType.NONE)
 @XmlRootElement(name = "products")
-@Path("jersey/")
+@Path("/")
 public class ProductsController {
 
     @Autowired

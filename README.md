@@ -3,7 +3,7 @@
 
 | Technology | Badge |
 |:-----------:|:-----:|
-| Travis CI | [![Build Status](https://travis-ci.com/Sharypov-Denis/Product_catalog_on_Spring_Boot_plus_Docker.svg?branch=master)](https://travis-ci.com/github/Sharypov-Denis/Product_catalog_on_Spring_Boot_plus_Docker) |
+| Travis CI | [![Build Status](https://travis-ci.com/Sharypov-Denis/RESTful-Spring-Boot---Catalogy.svg?branch=main)](https://travis-ci.com/Sharypov-Denis/RESTful-Spring-Boot---Catalogy) |
 
 # Functionality: 
 * Add a product
@@ -17,8 +17,6 @@
 * Jersey
 * HSQLDB
 * Stream API
-* Junit 4
 * Maven
-* Swagger
 
 Developing in IntelliJ IDEA Ultimate
