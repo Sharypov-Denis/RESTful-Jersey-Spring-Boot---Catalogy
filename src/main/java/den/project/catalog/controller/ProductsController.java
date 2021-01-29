@@ -12,15 +12,13 @@ import javax.ws.rs.core.Response;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
-import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.ArrayList;
 import java.util.List;
 
-@RestController///можно без этой аннотации
+@RestController
 @XmlAccessorType(XmlAccessType.NONE)
 @XmlRootElement(name = "products")
-@Path("/")
+@Path("/product")
 public class ProductsController {
 
     @Autowired
@@ -28,8 +26,8 @@ public class ProductsController {
 
     @GET
     @Produces("application/json")//сериализация, для формата XML - "application/xml"
-    public List<Products> getAllUsers() {
-        List<Products> productsList = new ArrayList<>();
+    public List<Products> getAllProducts() {
+        List<Products> productsList;
         productsList = repository.getAll();
         return productsList;
     }
@@ -37,21 +35,20 @@ public class ProductsController {
     @GET
     @Path("/{id}")
     @Produces("application/json")//сериализация, для формата XML - "application/xml"
-    public Response getById(@PathParam("id") int id) throws URISyntaxException {
+    public Response getById(@PathParam("id") int id) {
         Products products = repository.get(id);
         if (products == null) {
             return Response.status(404).build();
         }
         return Response
                 .status(200)
-                .entity(products)
-                .contentLocation(new URI("/user-management/" + id)).build();
+                .entity(products).build();
     }
 
     @DELETE
     @Path("/delete/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public Response deleteUser(@PathParam("id") int id) throws URISyntaxException {
+    public Response deleteProduct(@PathParam("id") int id) throws URISyntaxException {
         Products products = repository.get(id);
         if (products != null) {
             repository.delete(id);
@@ -62,7 +59,7 @@ public class ProductsController {
 
     @POST
     @Consumes("application/json")//ДЕсериализация, для формата XML - "application/xml"
-    public Response create(Products products) throws URISyntaxException {
+    public Response create(Products products) {
         if (products.getName() == null || products.getDescription() == null) {
             return Response.status(400).entity("Please provide all mandatory inputs").build();
         }
@@ -74,7 +71,7 @@ public class ProductsController {
     @Path("/update/{id}")
     @Consumes("application/json")//ДЕсериализация, для формата XML - "application/xml"
     @Produces("application/json")//сериализация, для формата XML - "application/xml"
-    public Response update(@PathParam("id") int id, Products products) throws URISyntaxException {
+    public Response update(@PathParam("id") int id, Products products) {
         Products newProducts = repository.get(id);
         if (newProducts == null) {
             return Response.status(404).build();
